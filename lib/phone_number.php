@@ -1,8 +1,8 @@
 <?php
 
 /**
-	* 
-	*/
+* 
+*/
 class Phone_Number extends Faker
 {
 	/**

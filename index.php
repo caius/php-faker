@@ -56,44 +56,44 @@
 			);
 ?>
 
-<table>
-	<legend>$f = new Faker</legend>
-	<tr>
-		<th>PHP Statement</th>
-		<th>Output</th>
-	</tr>
+	<table>
+		<legend>$f = new Faker</legend>
+		<tr>
+			<th>PHP Statement</th>
+			<th>Output</th>
+		</tr>
 	
-	<?php
+		<?php
 	
-	$f = new Faker;
+		$f = new Faker;
 	
-	foreach ($arr as $class => $methods) {
-		foreach ($methods as $method) {
-			if ( is_array( $method ) ) {
+		foreach ($arr as $class => $methods) {
+			foreach ($methods as $method) {
+				if ( is_array( $method ) ) {
+					?>
+						<tr>
+							<td>$f-><?php echo $class ?>-><?php echo $method[0] ?>( <?php echo $method[1] ?> )</td>
+							<?php if ( strpos( $method[1], "'" ) ): ?>
+								<td><?php echo $f->$class->$method[0]( '$method[1]' ) ?></td>
+							<?php else: ?>
+								<td><?php echo $f->$class->$method[0]( $method[1] ) ?></td>
+							<?php endif ?>
+						</tr>
+					<?php
+				} else {
 				?>
 					<tr>
-						<td>$f-><?php echo $class ?>-><?php echo $method[0] ?>( <?php echo $method[1] ?> )</td>
-						<?php if ( strpos( $method[1], "'" ) ): ?>
-							<td><?php echo $f->$class->$method[0]( '$method[1]' ) ?></td>
-						<?php else: ?>
-							<td><?php echo $f->$class->$method[0]( $method[1] ) ?></td>
-						<?php endif ?>
+						<td>$f-><?php echo $class ?>-><?php echo $method ?></td>
+						<td><?php echo $f->$class->$method ?></td>
 					</tr>
 				<?php
-			} else {
-			?>
-				<tr>
-					<td>$f-><?php echo $class ?>-><?php echo $method ?></td>
-					<td><?php echo $f->$class->$method ?></td>
-				</tr>
-			<?php
+				}
 			}
 		}
-	}
 	
-	?>
+		?>
 	
-</table>
+	</table>
 		
-	</body>
+</body>
 </html>

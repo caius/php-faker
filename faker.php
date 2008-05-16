@@ -115,7 +115,6 @@ class Faker
 		return $result;
 	}
 	
-	
 }
 
 // Include the library files
