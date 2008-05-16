@@ -1,7 +1,8 @@
 Faker is a package that generates random fake data for you.
 
 Requirements:
-	* PHP5
+
+* PHP5
 
 To use it simply create a new faker object and then call a subclass & method.
 
