@@ -116,10 +116,7 @@ class Address extends Faker
 		$result = parent::numerify( $a );
 		return $result;
 	}
-	
-	
-	
-	
+		
 }
 
 ?>

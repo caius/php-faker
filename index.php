@@ -45,6 +45,13 @@
 					array( 'email', 'caius durling' ),
 					'free_email',
 					array( 'free_email', 'caius durling' ),
+				),
+			'Lorem' => array(
+					'words',
+					'sentence',
+					'sentences',
+					'paragraph',
+					'paragraphs',
 				)
 			);
 ?>
