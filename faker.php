@@ -53,7 +53,7 @@ class Faker
 	 */
 	protected function rand_num()
 	{
-		$a = array( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 );
+		$a = range( 0, 9 );
 		return $this->random( $a );
 	}
 	
@@ -65,11 +65,7 @@ class Faker
 	 */
 	protected function rand_letter()
 	{
-		$a = array(
-				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-				'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-				'u', 'v', 'w', 'x', 'y', 'z'
-			);
+		$a = range( 'a', 'z' );
 		return $this->random( $a );
 	}
 	
