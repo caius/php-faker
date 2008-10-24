@@ -11,6 +11,11 @@ class Internet extends Faker
 	 * @return void
 	 * @author Caius Durling
 	 */
+	 
+	private static $_domain_suffix = array('co.uk','com','us','org','ca','biz','info','name');
+	private static $_free = array('gmail.com','googlemail.com','yahoo.com','hotmail.com','hotmail.co.uk');
+	private static $_name_formats = array(array('first_name'),array('first_name','surname'));
+	
 	public function __construct()
 	{
 	}
@@ -26,14 +31,12 @@ class Internet extends Faker
 	
 	public function domain_suffix()
 	{
-		$domains = array( 'co.uk', 'com', 'us', 'org', 'ca', 'biz', 'info', 'name' );
-		return parent::random( $domains );
+		return parent::random( self::$_domain_suffix );
 	}
 	
 	public function domain_word()
 	{
-		$com = new Company;
-		$result = explode( ' ', $com->name );
+		$result = explode( ' ', parent::__get('Company')->name );
 		$result = $result[0];
 		$result = strtolower( $result );
 		$result = preg_replace( "/\W/", '', $result );
@@ -54,13 +57,8 @@ class Internet extends Faker
 		}
 		
 		// get first_name, surname
-		$formats = array(
-				array( 'first_name' ),
-				array( 'first_name', 'surname' )
-			);
-		$n = new Name;
-		
-		$a = parent::random( $formats );
+		$n = parent::__get('Name');
+		$a = parent::random( self::$_name_formats );
 		
 		foreach ( $a as $method ) {
 			$na[] = $n->$method;
@@ -79,19 +77,14 @@ class Internet extends Faker
 	
 	public function free_email( $name = null)
 	{
-		$free = array( 'gmail.com', 'googlemail.com', 'yahoo.com', 'hotmail.com', 'hotmail.co.uk' );
-		return join( array( $this->user_name($name), parent::random( $free ) ), "@" );
+		return join( array( $this->user_name($name), parent::random( self::$_free ) ), "@" );
 	}
 	
 	protected function sanitise_name( $name )
 	{
-		// Downcase it
 		$name = strtolower( $name );
-		// Replace spaces with either . or _
-		$n = explode( ' ', $name );
-		
-		$n = array_map( create_function( '$name', 'return preg_replace( "/\W/", "", $name );' ), $n );
-		
+		$n = explode(' ', $name );
+		$n = preg_replace("/\W/", "", $n);
 		$d = array( '.', '_');
 		// Randomise the array order
 		shuffle( $n );
