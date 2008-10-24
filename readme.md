@@ -1,3 +1,16 @@
+***
+This fork of php-faker is based on Caius Durling's php-faker:
+http://github.com/caius/php-faker/commit/5a5ef830c6fc887b1824e211a03f3fc0ada45700
+
+From my own tests it performs roughly 10x faster than Caius' version.
+
+Enjoy.
+
+- ifunk
+***
+
+
+
 Faker is a package that generates random fake data for you.
 
 Requirements:
