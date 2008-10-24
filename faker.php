@@ -17,6 +17,9 @@
 */
 class Faker
 {
+	
+	private $_instances = array();
+	
 	public function __construct()
 	{
 	}
@@ -26,9 +29,12 @@ class Faker
 		return "";
 	}
 		
-	public function __get( $var )
+	public function &__get( $var )
 	{
-		return new $var;
+		if (empty($this->_instances[$var])) {
+			$this->_instances[$var] = new $var;
+		}
+		return $this->_instances[$var];
 	}
 	
 	// todo: use __autoload()
@@ -40,9 +46,9 @@ class Faker
 	 * @return string
 	 * @author Caius Durling
 	 */	
-	protected function random( &$array )
+	protected function random($array)
 	{
-		return $array[ array_rand( $array ) ];
+		return $array[mt_rand(0, count($array)-1)];
 	}
 	
 	/**
@@ -53,8 +59,7 @@ class Faker
 	 */
 	protected function rand_num()
 	{
-		$a = range( 0, 9 );
-		return $this->random( $a );
+		return mt_rand(0, 9);
 	}
 	
 	/**
@@ -65,8 +70,7 @@ class Faker
 	 */
 	protected function rand_letter()
 	{
-		$a = range( 'a', 'z' );
-		return $this->random( $a );
+		return chr(mt_rand(97, 122));
 	}
 	
 	
