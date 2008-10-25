@@ -4,9 +4,10 @@
  * Class for generating fake data
  * 
  * @package Faker
- * @version 0.1-dev
+ * @version 0.2
  * @copyright 2007 Caius Durling
  * @author Caius Durling
+ * @author ifunk
  * 
  */
 
