@@ -35,7 +35,7 @@ class Faker
 	{
 		if (empty(Faker::$_instances[$var])) {
 
-			$filename = "lib/".strtolower($var).".php";
+			$filename = dirname(__FILE__)."/lib/".strtolower($var).".php";
 
 			if(!file_exists($filename))
 				return NULL;
