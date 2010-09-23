@@ -29,7 +29,7 @@ You only need to include `Faker.class.php` as it autoload all the files under li
   - No more inheritance from Faker
   - Moved Faker to fkUtils
   - Added a facade class Faker, which provides roughly the same API as the old Faker class
-  - No more __get and __set magic, use of explicit methods call instead
+  - No more \_\_get() and \_\_set() magic, use of explicit methods call instead
 
   Added SPL autoloading
 
