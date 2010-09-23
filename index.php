@@ -1,4 +1,5 @@
-<?php include 'faker.php'; ?><html>
+<?php require_once 'Faker.class.php'; ?>
+<html>
 	<head>
 		<title>Generating random data</title>
 	</head>
@@ -6,47 +7,47 @@
 		
 		<?php
 		$arr = array(
-			'Name' => array(
+			'name' => array(
 					'name',
-					'first_name',
+					'firstName',
 					'surname',
 					'prefix',
 					'suffix',
 				),
-			'Address' => array(
-					'street_suffix',
-					'street_name',
-					'street_address',
-					'abode_address',
-					array( 'abode_address', true ),
-					'uk_county',
-					'uk_country',
-					'post_code',
-					'us_state',
-					'us_state_abbr',
-					'zip_code'
+			'address' => array(
+					'streetSuffix',
+					'streetName',
+					'streetAddress',
+					'abodeAddress',
+					array( 'abodeAddress', true ),
+					'ukCounty',
+					'ukCountry',
+					'postCode',
+					'usState',
+					'usStateAbbr',
+					'zipCode'
 				),
-			'Phone_Number' => array(
-					'phone_number'
+			'phoneNumber' => array(
+					'phoneNumber'
 				),
-			'Company' => array(
+			'company' => array(
 					'name',
 					'suffix',
-					'catch_phrase',
+					'catchPhrase',
 					'bs',
 				),
-			'Internet' => array(
-					'domain_suffix',
-					'domain_word',
-					'domain_name',
-					'user_name',
-					array( 'user_name', 'caius durling' ),
+			'internet' => array(
+					'domainSuffix',
+					'domainWord',
+					'domainName',
+					'userName',
+					array( 'userName', 'caius durling' ),
 					'email',
 					array( 'email', 'caius durling' ),
-					'free_email',
-					array( 'free_email', 'caius durling' ),
+					'freeEmail',
+					array( 'freeEmail', 'caius durling' ),
 				),
-			'Lorem' => array(
+			'lorem' => array(
 					'words',
 					'sentence',
 					'sentences',
@@ -57,41 +58,39 @@
 ?>
 
 	<table>
-		<legend>$f = new Faker</legend>
+		<legend>Faker::</legend>
 		<tr>
 			<th>PHP Statement</th>
 			<th>Output</th>
 		</tr>
-	
-		<?php
-	
-		$f = new Faker;
-	
-		foreach ($arr as $class => $methods) {
-			foreach ($methods as $method) {
-				if ( is_array( $method ) ) {
-					?>
-						<tr>
-							<td>$f-><?php echo $class ?>-><?php echo $method[0] ?>( <?php echo $method[1] ?> )</td>
-							<?php if ( strpos( $method[1], "'" ) ): ?>
-								<td><?php echo $f->$class->$method[0]( '$method[1]' ) ?></td>
-							<?php else: ?>
-								<td><?php echo $f->$class->$method[0]( $method[1] ) ?></td>
-							<?php endif ?>
-						</tr>
-					<?php
-				} else {
-				?>
-					<tr>
-						<td>$f-><?php echo $class ?>-><?php echo $method ?></td>
-						<td><?php echo $f->$class->$method ?></td>
-					</tr>
-				<?php
-				}
-			}
-		}
-	
-		?>
+		<?php for ($i = 0; $i < 10; $i++):?>
+  		<?php
+  		foreach ($arr as $class => $methods) {
+  			foreach ($methods as $method) {
+  				if ( is_array( $method ) ) {
+  					?>
+  						<tr>
+  							<td>Faker::<?php echo $class ?>-><?php echo $method[0] ?>( <?php echo $method[1] ?> )</td>
+  							<?php if ( strpos( $method[1], "'" ) ): ?>
+  								<td><?php echo call_user_func(array('Faker', $class))->$method[0]( '$method[1]' ) ?></td>
+  							<?php else: ?>
+  								<td><?php echo call_user_func(array('Faker', $class))->$method[0]( $method[1] ) ?></td>
+  							<?php endif ?>
+  						</tr>
+  					<?php
+  				} else {
+  				?>
+  					<tr>
+  						<td>Faker::<?php echo $class ?>-><?php echo $method ?>()</td>
+  						<td><?php echo call_user_func(array('Faker', $class))->$method() ?></td>
+  					</tr>
+  				<?php
+  				}
+  			}
+  		}
+  	
+  		?>
+		<?php endfor;?>
 	
 	</table>
 		
