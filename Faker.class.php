@@ -50,4 +50,11 @@ final class Faker
   {
     return self::$phone ? self::$phone : self::$phone = new fkPhoneNumber();
   }
+  
+  private static $date;
+
+  public static function date ()
+  {
+    return self::$date ? self::$date : self::$date = new fkDate();
+  }
 }
