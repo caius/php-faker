@@ -7,6 +7,7 @@ class fkDate
 {
   
   /**
+   * 
    * @return string A random date
    */
   public function date()
