@@ -1,5 +1,9 @@
 <?php
-require_once dirname(__FILE__) . '/autoload.php';
+
+if (count(spl_autoload_functions()) <= 0) 
+{
+  require_once dirname(__FILE__) . '/autoload.php';
+}
 
 final class Faker
 {
